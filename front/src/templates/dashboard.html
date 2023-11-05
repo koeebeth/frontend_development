@@ -4,55 +4,218 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard Page</title>
+
   </head>
   <body>
     <div class="container">
-      <div class="nav-bar">
-        <div class="logo">
-          <div></div>
-          <h1>Dashboard</h1>
-        </div>
-        <div class="nav-buttons">
-          <div>Search</div>
-          <div>Notifications</div>
-          <div class="profile">
-            <span class="profile-name">John Doe</span>
-            <div class="profile-picture"></div>
+      <div class="header-navigation">
+        <div class="header-navigation-buttons ">
+          <div class="header-button search-bar">
+            <input/>
+          <button class="header-button action"><span class="material-symbols-outlined">
+            search
+            </span></button>
           </div>
+          <button class="header-button action"><span class="material-symbols-outlined">
+            notifications
+            </span><span class="notification-count">13</span></button>
+          <button class="header-button profile">
+            <span class="profile-name">John Doe</span>
+            <div class="header-button profile-picture placeholder"></div>
+          </button>
         </div>
       </div>
-      <div class="side-bar">
-        <div>
-          <h3>Homepage</h3>
-          <h3>Profile</h3>
-          <h3>Calendar</h3>
-          <h3>Notes</h3>
+      <aside class="side-navigation">
+        <div class="logo">
+          <div class="logo-picture placeholder"></div>
+          <h1>Syndore</h1>
         </div>
-        <div>
-          <h3>Settings</h3>
-        </div>
-      </div>
+          <a class="side-navigation-item" href="#"><span class="material-symbols-outlined">
+            space_dashboard
+            </span> Homepage</a>
+          <a class="side-navigation-item" href="#"><span class="material-symbols-outlined">
+            person
+            </span> Profile</a>
+          <a class="side-navigation-item" href="#"><span class="material-symbols-outlined">
+            calendar_today
+            </span> Calendar</a>
+          <a class="side-navigation-item" href="#"><span class="material-symbols-outlined">
+            checklist
+            </span> Notes</a>
+          <a class="side-navigation-item" href="#"><span class="material-symbols-outlined">
+            settings
+            </span> Settings</a>
+            <footer class="logo-footer">
+              Lorem ipsum
+            </footer>
+      </aside>
       <div class="board">
-        <div class="user-list">
-          <h2>Users</h2>
-          <ul>
-            <li>User 1</li>
-            <li>User 2</li>
-            <li>User 3</li>
-            <li>User 4</li>
-          </ul>
-        </div>
-        <div class="graph-bar">
-          <div></div>
-        </div>
+          <div class="board-item stat"><canvas id="line1"></canvas></div>
+          <div class="board-item stat"><canvas id="line2"></canvas></div>
+          <div class="board-item users">
+            <h2>Users</h2>
+            <ul>
+              <li>User 1 <a class="user-details">More</a></li>
+              <li>User 2 <a class="user-details">More</a></li>
+              <li>User 3 <a class="user-details">More</a></li>
+              <li>User 4 <a class="user-details">More</a></li>
+            </ul>
+          </div>
+          <div class="board-item main-chart">
+            <h2 class="chart-title">Chart</h2>
+            <div class="main-chart-container">
+              <canvas id="main-chart"></canvas>
+            </div>
+          </div>
+          <div class="board-item graph">
+            <h3>Graph 1</h3>
+            <div class="graph-container">
+              <canvas id="graph1"></canvas>
+            </div>
+          </div>
+          <div class="board-item graph">
+            <h3>Graph 2</h3>
+            <div class="graph-container">
+              <canvas id="graph2"></canvas>
+            </div>
+          </div>
+          <div class="board-item graph">
+            <h3>Graph 3</h3>
+            <div class="graph-container">
+              <canvas id="graph3"></canvas>
+            </div>
+          </div>
+          <div class="board-item graph">
+            <h3>Graph 4</h3>
+            <div class="graph-container">
+              <canvas id="graph4"></canvas>
+            </div>
+          </div>
       </div>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoad", function () {
-          // Code here !!
-      });
-
-    </script>
   </body>
+  <script>
+    const mainChart = document.getElementById('main-chart');
+    const graphOne = document.getElementById('graph1');
+    const graphTwo = document.getElementById('graph2');
+    const graphThree = document.getElementById('graph3');
+    const graphFour = document.getElementById('graph4');
+    const lineOne = document.getElementById('line1');
+    const lineTwo = document.getElementById('line2');
+    const lineThree = document.getElementById('line3');
+  
+    new Chart(mainChart, {
+      type: 'doughnut',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    new Chart(graphOne, {
+      type: 'radar',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(graphTwo, {
+      type: 'radar',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: '#96B6C5',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(graphThree, {
+      type: 'radar',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: '#4F709C',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(graphFour, {
+      type: 'radar',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [61, 29, 80, 81, 36, 55, 40],
+          fill: false,
+          borderColor: 'salmon',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(lineOne, {
+      type: 'line',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [61, 29, 80, 81, 36, 55, 40],
+          fill: false,
+          borderColor: '#96B6C5',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(lineTwo, {
+      type: 'line',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [61, 29, 80, 81, 36, 55, 40],
+          fill: false,
+          borderColor: 'salmon',
+          tension: 0.1
+        }]
+      }     
+    })
+    new Chart(lineThree, {
+      type: 'line',
+      data: {
+        labels: ['March','April','May','June','July','August'],
+        datasets: [{
+          label: 'Data',
+          data: [61, 29, 80, 81, 36, 55, 40],
+          fill: false,
+          borderColor: '#96B6C5',
+          tension: 0.1
+        }]
+      }     
+    })
+  </script>
 </html>
